@@ -31,6 +31,12 @@
 
     <script type="text/javascript">
 
+      function listenToEventResize() {
+        console.log('resized');
+        console.log(window.innerWidth);
+        console.log(window.innerHeight);
+      }
+
       function createDiv(classNameOne, classNameTwo){
         var div = document.createElement('div');
         div.classList.add(classNameOne);
@@ -59,8 +65,18 @@
           return String.fromCharCode( 65 + character_number_adder );
       }
 
-      var rows = 300;
-      var columns = 300;
+
+
+      // ==============
+
+      window.addEventListener("resize", listenToEventResize);
+
+      var rows = 90;
+      var columns = 90;
+
+      browser_width = window.innerWidth;
+      browser_height = window.innerHeight;
+
 
       for (var r = 1; r <= rows; r++) {
 
