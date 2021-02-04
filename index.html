@@ -1,1 +1,80 @@
-Pixel Letters
+<html>
+
+  <head>
+
+    <style>
+
+      .cell {
+        width: .8%;
+        height: 3%;
+        margin: 1px;
+        float: left;
+        background-color: lightgray;
+      }
+
+      .cell.fill {
+        background-color: gray;
+      }
+
+      .clear {
+        clear: both;
+      }
+
+    </style>
+
+  </head>
+
+  <body>
+
+    <div id='wrapper'>
+    </div>
+
+    <script type="text/javascript">
+
+      function createDiv(classNameOne, classNameTwo){
+        var div = document.createElement('div');
+        div.classList.add(classNameOne);
+        if( classNameTwo ) { div.classList.add(classNameTwo) };
+
+        document.getElementById('wrapper').appendChild(div);
+      }
+
+      var rows = 98;
+      var columns = 98;
+
+      for (var r = 1; r <= rows; r++) {
+
+        row_class = String.fromCharCode(96 + r);
+
+
+        for (var c = 1; c <= columns; c++) {
+          coordinate_class = row_class + c;
+          createDiv("cell", coordinate_class);
+        };
+
+        createDiv("clear", "");
+
+      };
+
+    </script>
+
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
