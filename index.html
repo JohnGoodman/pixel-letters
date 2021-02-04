@@ -5,8 +5,6 @@
     <style>
 
       .cell {
-        width: .8%;
-        height: 3%;
         margin: 1px;
         float: left;
         background-color: lightgray;
@@ -37,10 +35,18 @@
         console.log(window.innerHeight);
       }
 
-      function createDiv(classNameOne, classNameTwo){
+      function createCell(row_class, column_class){
         var div = document.createElement('div');
-        div.classList.add(classNameOne);
-        if( classNameTwo ) { div.classList.add(classNameTwo) };
+        div.classList.add('cell');
+        div.classList.add(row_class);
+        div.classList.add(column_class);
+
+        document.getElementById('wrapper').appendChild(div);
+      }
+
+      function createClearDiv(){
+        var div = document.createElement('div');
+        div.classList.add('clear');
 
         document.getElementById('wrapper').appendChild(div);
       }
@@ -60,17 +66,12 @@
 
       }
 
-      function numberToCharacter(number){
-          character_number_adder = ( number - 1 ) % 26;
-          return String.fromCharCode( 65 + character_number_adder );
-      }
-
-      function setStyles(){
+      function setStyles(width, height){
         var style = document.createElement('style');
         style.innerHTML =
           '.cell {' +
-            'color: purple;' +
-            'background-color: green;' +
+            'width: ' + width + '%;' +
+            'height: ' + height + '%' +
             '}';
 
         var ref = document.querySelector('script');
@@ -81,25 +82,26 @@
 
       window.addEventListener("resize", listenToEventResize);
 
-      setStyles();
-
-      var rows = 90;
-      var columns = 90;
 
       browser_width = window.innerWidth;
       browser_height = window.innerHeight;
 
+      var rows = 30;
+      var columns = 30;
 
+      setStyles('1','2');
+
+      // Create the cells
       for (var r = 1; r <= rows; r++) {
 
-        row_class = numberToCharacter(r);
+        row_class = "row" + r;
 
         for (var c = 1; c <= columns; c++) {
-          coordinate_class = row_class + c;
-          createDiv("cell", coordinate_class);
+          column_class = "column" + c;
+          createCell(row_class, column_class);
         };
 
-        createDiv("clear", "");
+        createClearDiv();
 
       };
 
