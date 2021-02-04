@@ -39,13 +39,32 @@
         document.getElementById('wrapper').appendChild(div);
       }
 
-      var rows = 98;
-      var columns = 98;
+      function numberToCharacter(number){
+
+        var s = '';
+        var t = '';
+
+        while( number > 0 ) {
+          t = ( number - 1 ) % 26;
+          s = String.fromCharCode( 65 + t ) + s;
+          number = ( number - t ) / 26 | 0;
+        }
+
+        return s || undefined;
+
+      }
+
+      function numberToCharacter(number){
+          character_number_adder = ( number - 1 ) % 26;
+          return String.fromCharCode( 65 + character_number_adder );
+      }
+
+      var rows = 300;
+      var columns = 300;
 
       for (var r = 1; r <= rows; r++) {
 
-        row_class = String.fromCharCode(96 + r);
-
+        row_class = numberToCharacter(r);
 
         for (var c = 1; c <= columns; c++) {
           coordinate_class = row_class + c;
