@@ -4,8 +4,13 @@
 
     <style>
 
+      html, body, #wrapper {
+        margin: 0px;
+        padding: 0px;
+      }
+
       .cell {
-        margin: 1px;
+        outline: 1px solid darkgray;
         float: left;
         background-color: lightgray;
       }
@@ -30,9 +35,9 @@
     <script type="text/javascript">
 
       function listenToEventResize() {
-        console.log('resized');
-        console.log(window.innerWidth);
-        console.log(window.innerHeight);
+        // console.log('resized');
+        // console.log(window.innerWidth);
+        // console.log(window.innerHeight);
       }
 
       function createCell(row_class, column_class){
@@ -78,32 +83,65 @@
         ref.parentNode.insertBefore(style, ref);
       }
 
-      // ==============
+      function createCells(browser_width, browser_height){
 
-      window.addEventListener("resize", listenToEventResize);
+        browser_width = window.innerWidth;
+        browser_height = window.innerHeight;
 
+        var rows = '';
+        var columns = '';
+        var witdh_and_height_percentage = '';
 
-      browser_width = window.innerWidth;
-      browser_height = window.innerHeight;
+        if( browser_width > 1200 ) {
+          rows = 80;
+          columns = 80;
+          witdh_and_height_percentage = 1.25;
+        }else if ( browser_width < 600 ){
+          rows = 20;
+          columns = 20;
+          witdh_and_height_percentage = 5;
+        }else{ // between 600 and 1200 px
+          rows = 50;
+          columns = 50;
+          witdh_and_height_percentage = 2;
+        }
 
-      var rows = 30;
-      var columns = 30;
+        // TODO - remove the old styles first
+        setStyles(witdh_and_height_percentage,witdh_and_height_percentage);
 
-      setStyles('1','2');
+        // Create the cells
+        for (var r = 1; r <= rows; r++) {
 
-      // Create the cells
-      for (var r = 1; r <= rows; r++) {
+          row_class = "row" + r;
 
-        row_class = "row" + r;
+          for (var c = 1; c <= columns; c++) {
+            column_class = "column" + c;
+            createCell(row_class, column_class);
+          };
 
-        for (var c = 1; c <= columns; c++) {
-          column_class = "column" + c;
-          createCell(row_class, column_class);
+          createClearDiv();
+
         };
 
-        createClearDiv();
+      }
 
-      };
+      function displayLetter(){
+        console.log('key down');
+      }
+
+      function hideLetter(){
+        console.log('key up');
+      }
+
+      // ==============
+
+      window.addEventListener("resize", createCells);
+
+      window.addEventListener("keydown", displayLetter);
+      window.addEventListener("keyup", hideLetter);
+
+      createCells();
+
 
     </script>
 
