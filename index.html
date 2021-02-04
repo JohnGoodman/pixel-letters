@@ -65,11 +65,23 @@
           return String.fromCharCode( 65 + character_number_adder );
       }
 
+      function setStyles(){
+        var style = document.createElement('style');
+        style.innerHTML =
+          '.cell {' +
+            'color: purple;' +
+            'background-color: green;' +
+            '}';
 
+        var ref = document.querySelector('script');
+        ref.parentNode.insertBefore(style, ref);
+      }
 
       // ==============
 
       window.addEventListener("resize", listenToEventResize);
+
+      setStyles();
 
       var rows = 90;
       var columns = 90;
