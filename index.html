@@ -34,12 +34,6 @@
 
     <script type="text/javascript">
 
-      function listenToEventResize() {
-        // console.log('resized');
-        // console.log(window.innerWidth);
-        // console.log(window.innerHeight);
-      }
-
       function createCell(row_class, column_class){
         var div = document.createElement('div');
         div.classList.add('cell');
@@ -54,21 +48,6 @@
         div.classList.add('clear');
 
         document.getElementById('wrapper').appendChild(div);
-      }
-
-      function numberToCharacter(number){
-
-        var s = '';
-        var t = '';
-
-        while( number > 0 ) {
-          t = ( number - 1 ) % 26;
-          s = String.fromCharCode( 65 + t ) + s;
-          number = ( number - t ) / 26 | 0;
-        }
-
-        return s || undefined;
-
       }
 
       function setStyles(width, height){
@@ -126,11 +105,13 @@
       }
 
       function displayLetter(){
-        console.log('key down');
+        cell = document.getElementsByClassName('row1 column1');
+        cell[0].classList.add('fill');
       }
 
       function hideLetter(){
-        console.log('key up');
+        cell = document.getElementsByClassName('row1 column1');
+        cell[0].classList.remove('fill');
       }
 
       // ==============
