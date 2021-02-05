@@ -90,21 +90,24 @@
 
         // TODO - make this dynamic
         if( browser_width > 1200 ) {
-          total_rows = 50;
-          total_columns = 50;
-          witdh_and_height_percentage = 2;
-        }else if ( browser_width < 600 ){
-          total_rows = 20;
           total_columns = 20;
-          witdh_and_height_percentage = 5;
+          total_rows = 20;
+          width_percentage = 5;
+          height_percentage = 5;
+        }else if ( browser_width < 600 ){
+          total_columns = 10;
+          total_rows = 20;
+          width_percentage = 10;
+          height_percentage = 5;
         }else{ // between 600 and 1200 px
-          total_rows = 40;
-          total_columns = 40;
-          witdh_and_height_percentage = 2.5;
+          total_columns = 20;
+          total_rows = 20;
+          width_percentage = 5;
+          height_percentage = 5;
         }
 
         // TODO - remove the old styles first
-        setStyles(witdh_and_height_percentage,witdh_and_height_percentage);
+        setStyles(width_percentage,height_percentage);
 
 
         // Create the cells
@@ -151,9 +154,10 @@
       // ==============
 
       // Set global variables
-      var total_rows = 40;
-      var total_columns = 40;
-      var witdh_and_height_percentage = 2.5;
+      var total_columns = 20;
+      var total_rows = 20;
+      var width_percentage = 5;
+      var height_percentage = 5;
 
       window.addEventListener("resize", resizeCells);
 

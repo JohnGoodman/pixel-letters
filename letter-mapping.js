@@ -16,7 +16,7 @@ function round_to_even(fill_columns){
 }
 
 
-function letterI (total_columns, total_rows){
+function letterI (total_rows, total_columns){
 
   var fill_cells = [];
 
