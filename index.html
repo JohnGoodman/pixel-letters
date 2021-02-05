@@ -67,7 +67,23 @@
       }
 
 
-      function createCells(browser_width, browser_height){
+      function resizeCells(){
+
+        // Remove the old cells first
+        cells = Array.prototype.slice.call(document.getElementsByClassName('cell'), 0);
+        clears = Array.prototype.slice.call(document.getElementsByClassName('clear'), 0);
+        elements = cells.concat(clears);
+
+        for (var i = elements.length - 1; i >= 0; i--) {
+          elements[i].remove();
+        };
+
+        // Create the new cells
+        createCells();
+      }
+
+
+      function createCells(){
 
         browser_width = window.innerWidth;
         browser_height = window.innerHeight;
@@ -76,6 +92,7 @@
         var columns = '';
         var witdh_and_height_percentage = '';
 
+        // TODO - make this dynamic
         if( browser_width > 1200 ) {
           rows = 80;
           columns = 80;
@@ -92,6 +109,7 @@
 
         // TODO - remove the old styles first
         setStyles(witdh_and_height_percentage,witdh_and_height_percentage);
+
 
         // Create the cells
         for (var r = 1; r <= rows; r++) {
@@ -136,8 +154,7 @@
 
       // ==============
 
-
-      window.addEventListener("resize", createCells);
+      window.addEventListener("resize", resizeCells);
 
       window.addEventListener("keydown", displayLetter);
       window.addEventListener("keyup", hideLetter);
