@@ -88,23 +88,19 @@
         browser_width = window.innerWidth;
         browser_height = window.innerHeight;
 
-        var rows = '';
-        var columns = '';
-        var witdh_and_height_percentage = '';
-
         // TODO - make this dynamic
         if( browser_width > 1200 ) {
-          rows = 80;
-          columns = 80;
-          witdh_and_height_percentage = 1.25;
+          total_rows = 50;
+          total_columns = 50;
+          witdh_and_height_percentage = 2;
         }else if ( browser_width < 600 ){
-          rows = 20;
-          columns = 20;
+          total_rows = 20;
+          total_columns = 20;
           witdh_and_height_percentage = 5;
         }else{ // between 600 and 1200 px
-          rows = 50;
-          columns = 50;
-          witdh_and_height_percentage = 2;
+          total_rows = 40;
+          total_columns = 40;
+          witdh_and_height_percentage = 2.5;
         }
 
         // TODO - remove the old styles first
@@ -112,11 +108,11 @@
 
 
         // Create the cells
-        for (var r = 1; r <= rows; r++) {
+        for (var r = 1; r <= total_rows; r++) {
 
           row_class = "row" + r;
 
-          for (var c = 1; c <= columns; c++) {
+          for (var c = 1; c <= total_columns; c++) {
             column_class = "column" + c;
             createCell(row_class, column_class);
           };
@@ -129,8 +125,8 @@
 
 
       function displayLetter(){
-        letter = 'a';
-        classes = letter_a;
+        letter = 'I';
+        classes = letterI (total_rows,total_columns);
 
         for (var i = classes.length - 1; i >= 0; i--) {
           cell_class = classes[i];
@@ -141,8 +137,8 @@
 
 
       function hideLetter(){
-        letter = 'a';
-        classes = letter_a;
+        letter = 'I';
+        classes = letterI (total_rows,total_columns);
 
         for (var i = classes.length - 1; i >= 0; i--) {
           cell_class = classes[i];
@@ -153,6 +149,11 @@
 
 
       // ==============
+
+      // Set global variables
+      var total_rows = 40;
+      var total_columns = 40;
+      var witdh_and_height_percentage = 2.5;
 
       window.addEventListener("resize", resizeCells);
 
