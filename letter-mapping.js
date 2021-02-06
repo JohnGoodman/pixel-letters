@@ -52,6 +52,64 @@ function letterI (total_rows, total_columns){
 }
 
 
+function loopColumnsAndRows(column_starting_point, row_starting_point, columns_width, columns_height){
+  cells = [];
+
+  // console.log(column_starting_point);
+  // console.log(row_starting_point);
+  // console.log(columns_width);
+  // console.log(columns_height);
+
+  // console.log(((columns_width - 1) + column_starting_point));
+  // console.log(((columns_height - 1) + row_starting_point));
+  column_number = column_starting_point;
+
+  // Loop the number of columns per grouping
+  // for (var c = 1; c <= ((columns_width - 1) + column_starting_point); c++) {
+    for (var c = 1; c <= columns_width; c++) {
+
+      row_number = row_starting_point;
+
+      // Loop the rows per column
+      for (var r = 1; r <= columns_height; r++) {
+        cell = 'row' + row_number + ' column' + column_number;
+        cells.push(cell);
+
+        row_number++;
+      };
+
+      column_number++;
+  };
+
+  return cells;
+}
+
+
+
+function letterW (total_rows, total_columns){
+
+  fill_cells = [];
+
+  columns_width = total_columns * .1;
+
+  // First column(s)
+  column_starting_point = 1;
+  row_starting_point = 1;
+  columns_one_height = total_rows * .5;
+  column_one_cells = loopColumnsAndRows(column_starting_point, row_starting_point, columns_width, columns_one_height)
+  fill_cells = fill_cells.concat(column_one_cells);
+
+  // Second column(s)
+  column_starting_point = ( columns_width + 1 );
+  row_starting_point = ( ( total_rows * .5 ) + 1 );
+  columns_two_height = total_rows * .4;
+  column_two_cells = loopColumnsAndRows(column_starting_point, row_starting_point, columns_width, columns_two_height)
+  fill_cells = fill_cells.concat(column_two_cells);
+
+  return fill_cells;
+}
+
+
 
 
 
