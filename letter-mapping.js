@@ -85,6 +85,15 @@ function loopColumnsAndRows(column_starting_point, row_starting_point, columns_w
 }
 
 
+function columnStartingPoint(column){
+   return (columns_width * column) + 1;
+}
+
+
+function rowStartingPoint(row_height){
+  return (total_rows * row_height) + 1;
+}
+
 
 function letterW (total_rows, total_columns){
 
@@ -101,10 +110,59 @@ function letterW (total_rows, total_columns){
 
   // Second column(s)
   column_starting_point = ( columns_width + 1 );
-  row_starting_point = ( ( total_rows * .5 ) + 1 );
+  row_starting_point = rowStartingPoint(.5);
   columns_two_height = total_rows * .4;
-  column_two_cells = loopColumnsAndRows(column_starting_point, row_starting_point, columns_width, columns_two_height)
+  column_two_cells = loopColumnsAndRows(column_starting_point, row_starting_point, columns_width, columns_two_height);
   fill_cells = fill_cells.concat(column_two_cells);
+
+  // Thrid column(s)
+  column_starting_point = columnStartingPoint(2);
+  row_starting_point = rowStartingPoint(.9);
+  columns_three_height = total_rows * .1;
+  column_three_cells = loopColumnsAndRows(column_starting_point, row_starting_point, columns_width, columns_three_height)
+  fill_cells = fill_cells.concat(column_three_cells);
+
+  // Fourth column(s)
+  column_starting_point = columnStartingPoint(3);
+  row_starting_point = rowStartingPoint(.7);
+  columns_four_height = total_rows * .2;
+  column_four_cells = loopColumnsAndRows(column_starting_point, row_starting_point, columns_width, columns_four_height)
+  fill_cells = fill_cells.concat(column_four_cells);
+
+  // Fifth column(s)
+  column_starting_point = columnStartingPoint(4);
+  row_starting_point = rowStartingPoint(.6);
+  columns_five_height = total_rows * .1;
+  column_five_cells = loopColumnsAndRows(column_starting_point, row_starting_point, columns_width, columns_five_height)
+  fill_cells = fill_cells.concat(column_five_cells);
+
+  // Sixth column(s)
+  column_starting_point = columnStartingPoint(5);
+  row_starting_point = rowStartingPoint(.7);
+  columns_six_height = total_rows * .2;
+  column_six_cells = loopColumnsAndRows(column_starting_point, row_starting_point, columns_width, columns_six_height)
+  fill_cells = fill_cells.concat(column_six_cells);
+
+  // Seventh column(s)
+  column_starting_point = columnStartingPoint(6);
+  row_starting_point = rowStartingPoint(.9);
+  columns_seven_height = total_rows * .1;
+  column_seven_cells = loopColumnsAndRows(column_starting_point, row_starting_point, columns_width, columns_seven_height)
+  fill_cells = fill_cells.concat(column_seven_cells);
+
+  // Eigth column(s)
+  column_starting_point = columnStartingPoint(7);
+  row_starting_point = rowStartingPoint(.5);
+  columns_eight_height = total_rows * .4;
+  column_eight_cells = loopColumnsAndRows(column_starting_point, row_starting_point, columns_width, columns_eight_height);
+  fill_cells = fill_cells.concat(column_eight_cells);
+
+  // Ninth column(s)
+  column_starting_point = columnStartingPoint(8);
+  row_starting_point = 1;
+  columns_nine_height = total_rows * .5;
+  column_nine_cells = loopColumnsAndRows(column_starting_point, row_starting_point, columns_width, columns_nine_height)
+  fill_cells = fill_cells.concat(column_nine_cells);
 
   return fill_cells;
 }
