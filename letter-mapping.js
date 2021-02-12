@@ -1,30 +1,55 @@
-letter_a = [
-  'row1 column1',
-  'row1 column2',
-  'row1 column3',
-  'row1 column4',
-
-  'row2 column1',
-  'row2 column2',
-  'row2 column3',
-  'row2 column4',
-];
-
-
 function round_to_even(fill_columns){
   return 2 * Math.round(fill_columns / 2);
 }
 
+function columnStartingPoint(column){
+   return (columns_width * column) + 1;
+}
 
+function rowStartingPoint(row_height){
+  return (total_rows * row_height) + 1;
+}
+
+function loopColumnsAndRows(column_starting_point, row_starting_point, columns_width, columns_height){
+  cells = [];
+
+  column_number = column_starting_point;
+
+  // Loop the number of columns per grouping
+    for (var c = 1; c <= columns_width; c++) {
+
+      row_number = row_starting_point;
+
+      // Loop the rows per column
+      for (var r = 1; r <= columns_height; r++) {
+        cell = 'row' + row_number + ' column' + column_number;
+        cells.push(cell);
+
+        row_number++;
+      };
+
+      column_number++;
+  };
+
+  return cells;
+}
+
+// =========================
+// Letters
+// =========================
+
+
+
+// Letter I
 function letterI (total_rows, total_columns){
 
   var fill_cells = [];
 
-  fill_columns = Math.abs( total_columns * .1 );
-  fill_columns = round_to_even(fill_columns);
+  fill_columns = Math.abs( total_columns * .1 );fill_columns = round_to_even(fill_columns);
 
   middle_column = total_columns / 2;
   fill_columns_from_middle = fill_columns / 2;
+
 
   // Get the columns to the left of middle
   for (var i = fill_columns_from_middle; i > 0; i--) {
@@ -52,49 +77,7 @@ function letterI (total_rows, total_columns){
 }
 
 
-function loopColumnsAndRows(column_starting_point, row_starting_point, columns_width, columns_height){
-  cells = [];
-
-  // console.log(column_starting_point);
-  // console.log(row_starting_point);
-  // console.log(columns_width);
-  // console.log(columns_height);
-
-  // console.log(((columns_width - 1) + column_starting_point));
-  // console.log(((columns_height - 1) + row_starting_point));
-  column_number = column_starting_point;
-
-  // Loop the number of columns per grouping
-  // for (var c = 1; c <= ((columns_width - 1) + column_starting_point); c++) {
-    for (var c = 1; c <= columns_width; c++) {
-
-      row_number = row_starting_point;
-
-      // Loop the rows per column
-      for (var r = 1; r <= columns_height; r++) {
-        cell = 'row' + row_number + ' column' + column_number;
-        cells.push(cell);
-
-        row_number++;
-      };
-
-      column_number++;
-  };
-
-  return cells;
-}
-
-
-function columnStartingPoint(column){
-   return (columns_width * column) + 1;
-}
-
-
-function rowStartingPoint(row_height){
-  return (total_rows * row_height) + 1;
-}
-
-
+// Letter W
 function letterW (total_rows, total_columns){
 
   fill_cells = [];
